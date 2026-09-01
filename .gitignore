@@ -2,3 +2,4 @@ _site/
 __pycache__/
 *.py[cod]
 .idea/
+/CodexBar-JetBrains/

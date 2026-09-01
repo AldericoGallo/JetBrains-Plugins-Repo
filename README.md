@@ -32,6 +32,17 @@ Add its ZIP or JAR distribution to [`plugins/`](plugins/) and push to `main`. Me
 
 Each plugin ID can appear only once in the generated feed. When publishing a new version, replace the older archive for that plugin ID. Different plugins can be published together.
 
+The `scripts/publish_plugin.py` helper performs that replacement safely by reading the incoming and existing archives' embedded plugin IDs. A plugin source repository can use it after checking out this repository:
+
+```bash
+python3 scripts/publish_plugin.py \
+  --archive /path/to/new-plugin.zip \
+  --expected-id com.example.plugin \
+  --expected-version 1.2.3
+```
+
+CodexBar's tag-release workflow uses this mechanism to commit new distributions automatically. The commit then triggers the Pages deployment workflow.
+
 ## Build locally
 
 The builder has no third-party dependencies and supports Python 3.9 or later:
